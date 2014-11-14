@@ -1,0 +1,19 @@
+{
+  "name": "node-guru",
+  "version": "1.0.0",
+  "description": "\"MVC Architecture for nodejs\"",
+  "main": "node-guru.js",
+  "keywords": [
+    "MVC",
+    "node",
+    "npm",
+    "Architecture",
+    "MVC Architecture",
+    "Node Architecture"
+  ],
+  "author": "\"SandeepChhapola\"",
+  "license": "GPLv3",
+  "dependencies": {
+    "shelljs": "^0.3.0"
+  }
+}
