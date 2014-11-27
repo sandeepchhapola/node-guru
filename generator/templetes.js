@@ -7,7 +7,7 @@ module.exports.buildApp = function() {
         require('colors');
         content.forEach(function (line) {
             if (line.indexOf('[FILE_URL]') > -1) {
-                newFile = line.replace('[FILE_URL]', _appBaseUrl+'/teststructure');
+                newFile = line.replace('[FILE_URL]', _appBaseUrl);
                 _fs.writeFileSync(newFile, '', "utf-8");
                 done++;
             } else {

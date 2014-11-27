@@ -1,9 +1,6 @@
 var fs = require('fs');
 
 module.exports.init = function () {
-
-    fs.mkdirSync('teststructure',parseInt('0777', 8));
-    process.chdir('teststructure');
     var ds = _appBaseUrl + "/templete_files/directory_structure.txt",
         data = fs.readFileSync(ds, "utf-8").split('\n'),
         length = data.length;
