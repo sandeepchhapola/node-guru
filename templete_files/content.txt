@@ -1,0 +1,461 @@
+[FILE_URL]/.bowerrc
+{
+    "directory" : "client/bower"
+}
+
+[FILE_URL]/.gitignore
+.idea
+node_modules
+
+[FILE_URL]/bower.json
+{
+  "name": "nodegurudemo",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "~1.3.3",
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.3.1"
+  }
+}
+
+
+[FILE_URL]/client/app/app.js
+angular.module('nodeGuru', [
+        'ngRoute'
+    ])
+    .config(function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: './partials/main.html',
+                controller: 'mainController'
+            }).when('/welcome', {
+                templateUrl: './partials/welcome.html',
+                controller: 'welcomeController'
+            }).when('/about', {
+                templateUrl: './partials/aboutus.html',
+                controller: 'aboutController'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    });
+
+
+[FILE_URL]/client/app/controllers/aboutController.js
+/**
+ * Created by sandeepchhapola on 18/11/14.
+ */
+
+
+[FILE_URL]/client/app/controllers/mainController.js
+angular.module('nodeGuru')
+    .controller("mainController",["$scope","userService",function($scope,userService){
+        console.log("main controller run successfully");
+        userService.getUser();
+    }]);
+
+[FILE_URL]/client/app/controllers/welcomeController.js
+/**
+ * Created by sandeepchhapola on 18/11/14.
+ */
+
+
+[FILE_URL]/client/app/services/userService.js
+angular.module('nodeGuru')
+    .service("userService",function(){
+        this.getUser=function(){
+            console.log("user service run successfully");
+        }
+    });
+
+[FILE_URL]/client/css/nodeguru.css
+.navbar{
+    margin-top: 25px;
+}
+
+[FILE_URL]/client/index.html
+<html ng-app="nodeGuru">
+<title>
+    node-guru-demo
+</title>
+<head>
+    <script type="text/javascript" src="bower/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower/angular/angular.js"></script>
+    <script type="text/javascript" src="bower/angular-route/angular-route.js"></script>
+    <link rel="stylesheet" href="bower/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/nodeguru.css">
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/services/userService.js"></script>
+    <script type="text/javascript" src="app/controllers/mainController.js"></script>
+</head>
+<body>
+<div class="row">
+    <div class="container">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">nodegurudemo</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#/welcome">Welcome</a></li>
+                    <li><a href="#/about">Aboutus</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        <div ng-view=""></div>
+    </div>
+</div>
+</body>
+</html>
+
+[FILE_URL]/client/partials/aboutus.html
+<div>
+    <p>Email: schhapola0001@gmail.com</p>
+    <p>Mobile: 95550abcde</p>
+</div>
+
+[FILE_URL]/client/partials/main.html
+<div>
+    <h3>Thanks for Using node-guru</h3>
+</div>
+
+[FILE_URL]/client/partials/welcome.html
+<div>
+    <h3>Welcome !</h3>
+</div>
+
+[FILE_URL]/configurations/bootstrap.js
+module.exports.initDomains = function () {
+    var domainList = _fs.readdirSync(_path.join(_appBaseUrl, 'server/domains'));
+    _mongoose.connect(_config.common.dataSource.mongo.url, {poolSize: _config.common.dataSource.mongo.poolSize}, function (err) {
+        if (err)
+            console.log("ERROR During Creating Connection to mongo server", err);
+    });
+    domainList.forEach(function (domain) {
+        var domainUrl = _path.join(_appBaseUrl, 'server/domains', domain);
+        var isDirectory = _fs.lstatSync(domainUrl).isDirectory();
+        if (!isDirectory) {
+
+            var domainName = domain.replace(".js", ''),
+                domainSchema = new _mongoose.Schema(require(domainUrl)),
+                domainModel = _mongoose.model(domainName, domainSchema);
+
+            global.__defineGetter__(domainName, function () {
+                return domainModel;
+            });
+        }
+    });
+};
+
+module.exports.initSuperUser = function () {
+    console.log("Save SuperUser to db");
+    Users.findOne({"userName": _config.common.superUser.userName},function(err,user){
+        if (err) {
+            console.log("Error in finding super user");
+        }else if(user) {
+            console.log("Super User Already Exists");
+        }else if(!user) {
+            new Users({
+                "userName": _config.common.superUser.userName,
+                "password": _config.common.superUser.password,
+                "salt": _config.common.superUser.salt
+            }).save(function (err, result) {
+                    if (err) {
+                        console.log("User Not Saved Sucessfully");
+                    } else {
+                        console.log("User Saved Sucessfully", result);
+                    }
+                });
+        }
+    });
+};
+
+[FILE_URL]/configurations/config.json
+{
+    "common": {
+        "port": 8080,
+        "appName": "nodegurudemo",
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://localhost:27017/nodegurudemo",
+                "poolSize": "100"
+            }
+        },
+        "superUser":{
+            "userName": "sandeepkumar",
+            "password": "123456789",
+            "salt": "evDAADgadgasd54/gd2@#25"
+        },
+        "development": {
+            "port": 9600,
+            "showHidden": true,
+            "serverUrl": "http://localhost:9600"
+        }
+    }
+}
+
+
+
+
+[FILE_URL]/configurations/urlMappings.js
+module.exports.initUrlMappings=function(){
+    var viewEngine = require("ejs-locals"),
+        methodOverride = require('method-override'),
+        session = require('express-session'),
+        bodyParser = require('body-parser'),
+        multer = require('multer'),
+        errorHandler = require('errorhandler');
+
+    // all environments
+    _app.set('port', process.env.PORT || 3000);
+    _app.set('views', _path.join(_appBaseUrl, "views"));
+    _app.engine('ejs', viewEngine);
+    _app.set('view engine', 'ejs');
+    _app.use(methodOverride());
+    _app.use(session({ resave: true,
+        saveUninitialized: true,
+        secret: 'uwotm8' }));
+    _app.use(bodyParser.json());
+    _app.use(bodyParser.urlencoded({ extended: true }));
+    _app.use(multer());
+    _app.use(_express.static(_path.join(_appBaseUrl, 'client')));
+
+    // error handling middleware should be loaded after the loading the routes
+    if ('development' == _app.get('env')) {
+        _app.use(errorHandler());
+    }
+
+    _app.get("/userlist",_Controllers.userController.getUserList);
+    _app.get("/",function(req,res){
+        res.render("index");
+    });
+};
+
+[FILE_URL]/globals/global.js
+module.exports.initGlobals = function () {
+
+    var config = require('../configurations/config.json'),
+        mongoose = require('mongoose'),
+        fs = require('fs'),
+        path = require('path'),
+        express = require('express'),
+        http = require('http'),
+        app = express(),
+        Services = {},
+        Controllers = {};
+
+    global.__defineGetter__("_config", function () {
+        return config;
+    });
+
+    global.__defineGetter__("_express", function () {
+        return express;
+    });
+
+    global.__defineGetter__("_app", function () {
+        return app;
+    });
+
+    global.__defineGetter__("_appBaseUrl", function () {
+        return process.env.PWD;
+    });
+
+    global.__defineGetter__("_fs", function () {
+        return fs;
+    });
+
+    global.__defineGetter__("_path", function () {
+        return path;
+    });
+
+    global.__defineGetter__("_http", function () {
+        return http;
+    });
+
+    global.__defineGetter__("_mongoose", function () {
+        return mongoose;
+    });
+
+    global.__defineGetter__("_Services", function () {
+        return Services;
+    });
+
+    global.__defineGetter__("_Controllers", function () {
+        return Controllers;
+    });
+
+    var servicesControllersInteIntegration = function (propertiesObj, propertiesUrl) {
+        var fileList = _fs.readdirSync(propertiesUrl);
+        fileList.forEach(function (file) {
+            var fileUrl = _path.join(propertiesUrl, file);
+            var isDirectory = _fs.lstatSync(fileUrl).isDirectory();
+            if (!isDirectory) {
+                var propertyName = file.replace(".js", '');
+                Object.defineProperty(propertiesObj, propertyName, {
+                    get: function () {
+                        return require(fileUrl);
+                    }
+                });
+            }
+        });
+    };
+
+    var servicesPath = _path.join(_appBaseUrl, "server/services");
+    var controllersPath = _path.join(_appBaseUrl, "server/controllers");
+
+    servicesControllersInteIntegration(_Services, servicesPath);
+    servicesControllersInteIntegration(_Controllers, controllersPath);
+
+};
+
+[FILE_URL]/package.json
+{
+  "name": "nodegurudemo",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.9.3",
+    "ejs-locals": "^1.0.2",
+    "errorhandler": "^1.3.0",
+    "express": "^4.10.2",
+    "express-session": "^1.9.2",
+    "method-override": "^2.3.0",
+    "mongoose": "^3.8.19",
+    "multer": "^0.1.6"
+  }
+}
+
+
+[FILE_URL]/server/controllers/userController.js
+module.exports.getUserList=function(req,res){
+    _Services.userService.getUserList(req,res);
+};
+
+[FILE_URL]/server/domains/Users.js
+module.exports={
+    "userName":{type:String},
+    "password":{type:String},
+    "salt":{type:String}
+};
+
+[FILE_URL]/server/server.js
+var bootstrape = require('../configurations/bootstrap'),
+    globalVars = require('../globals/global'),
+    urlMappings = require('../configurations/urlMappings');
+
+globalVars.initGlobals();
+bootstrape.initDomains();
+bootstrape.initSuperUser();
+urlMappings.initUrlMappings();
+
+var _server = _http.createServer(_app)
+    .on("error", function (err) {
+        console.log(err);
+    });
+
+_server.listen(3000, function () {
+    console.log('Server listening on port', _server.address().port);
+})
+    .on("error", function (err) {
+        console.log(err);
+    });
+
+[FILE_URL]/server/services/userService.js
+module.exports.getUserList=function(req,res){
+    Users.find({},function(err,users){
+        if(err){
+            res.status(400).send(err).end();
+        }
+            res.status(200).send(users).end();
+    });
+};
+
+[FILE_URL]/src/enums/EventName.js
+/**
+ * Created by sandeepchhapola on 14/11/14.
+ */
+
+
+[FILE_URL]/src/errors/responseError.js
+/**
+ * Created by sandeepchhapola on 14/11/14.
+ */
+
+
+[FILE_URL]/stuff/grunt/grunt.js
+/**
+ * Created by sandeepchhapola on 14/11/14.
+ */
+
+
+[FILE_URL]/stuff/jobs/reportmailer.js
+/**
+ * Created by sandeepchhapola on 14/11/14.
+ */
+
+
+[FILE_URL]/stuff/subprocess/subprocesses.js
+/**
+ * Created by sandeepchhapola on 14/11/14.
+ */
+
+
+[FILE_URL]/stuff/tests/userTest.js
+/**
+ * Created by sandeepchhapola on 14/11/14.
+ */
+
+
+[FILE_URL]/stuff/webhooks/webhooks.js
+/**
+ * Created by sandeepchhapola on 14/11/14.
+ */
+
+
+[FILE_URL]/views/index.ejs
+<html ng-app="nodeGuru">
+<title>
+    node-guru-demo
+</title>
+<head>
+    <script type="text/javascript" src="bower/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower/angular/angular.js"></script>
+    <script type="text/javascript" src="/bower/angular-route/angular-route.js"></script>
+    <link rel="stylesheet" href="/bower/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/nodeguru.css">
+    <script type="text/javascript" src="/app/app.js"></script>
+    <script type="text/javascript" src="/app/services/userService.js"></script>
+    <script type="text/javascript" src="/app/controllers/mainController.js"></script>
+</head>
+<body>
+<div class="row">
+    <div class="container">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">nodegurudemo</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#/welcome">Welcome</a></li>
+                    <li><a href="#/about">Aboutus</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        <div ng-view=""></div>
+    </div>
+</div>
+</body>
+</html>
+
