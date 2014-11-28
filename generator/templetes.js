@@ -4,11 +4,10 @@ module.exports.buildApp = function() {
         var content=_fs.readFileSync(filePath).toString().split('\n');
         var len=content.length;
         var done=0;
-        console.log(">>>>>>>>>>>>>>>>>>>>>_appBaseUrl>>>>>>>>>>>>>>>>",_appBaseUrl);
         require('colors');
         content.forEach(function (line) {
             if (line.indexOf('[FILE_URL]') > -1) {
-                newFile = line.replace('[FILE_URL]', _appBaseUrl);
+                newFile = line.replace('[FILE_URL]','.');
                 _fs.writeFileSync(newFile, '', "utf-8");
                 done++;
             } else {
