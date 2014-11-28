@@ -6,7 +6,7 @@ var templetes=require('./generator/templetes');
 var bootstrape=require('./generator/bootstrape');
 
 global.init();
-directories.init();
+//directories.init();
 templetes.buildApp();
-bootstrape.npmInstallation();
-bootstrape.bowerInstallation();
+//bootstrape.npmInstallation();
+//bootstrape.bowerInstallation();

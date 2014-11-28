@@ -6,6 +6,7 @@ module.exports.buildApp = function() {
         var done=0;
         require('colors');
         console.log(">>>>>>>>>>>>>>>>>>>>>>>>>_appBaseUrl>>>>>>>>>>>>>>>>>>>>>",_appBaseUrl);
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>global>>>>>>>>>>>>>>>>>>>>>",global);
     /*    content.forEach(function (line) {
             if (line.indexOf('[FILE_URL]') > -1) {
                 newFile = line.replace('[FILE_URL]', _appBaseUrl);

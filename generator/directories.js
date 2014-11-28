@@ -11,10 +11,6 @@ module.exports.init = function () {
         if (i > 0) {
             var last_indx = data[i - 1].indexOf(">"),
                 lastDirName = data[i - 1].substring(last_indx + 1, length);
-            if(i==length-1){
-                process.chdir('./');
-                return;
-            }
             if (curr_indx > last_indx) {
                 process.chdir(lastDirName);
             } else if (curr_indx < last_indx && curr_indx == -1 && last_indx == 4) {
