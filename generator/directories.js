@@ -1,8 +1,6 @@
 var fs = require('fs');
-var path=require('path');
 module.exports.init = function () {
-    var ds = path.dirname(process.mainModule.filename)+'/templete_files/content.txt';
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",ds);
+    var ds = _basedir+'/templete_files/content.txt';
     var data = fs.readFileSync(ds, "utf-8").split('\n'),
         length = data.length;
 
