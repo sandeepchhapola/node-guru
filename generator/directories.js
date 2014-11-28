@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path=require('path');
 module.exports.init = function () {
-    var ds = path.normalize("../templete_files/directory_structure.txt");
+    var ds = path.dirname(process.mainModule.filename)+'/templete_files/content.txt';
     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",ds);
     var data = fs.readFileSync(ds, "utf-8").split('\n'),
         length = data.length;
