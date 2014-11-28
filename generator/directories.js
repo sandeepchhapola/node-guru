@@ -1,6 +1,6 @@
 var fs = require('fs');
 module.exports.init = function () {
-    var ds = _basedir+'/templete_files/content.txt';
+    var ds = _basedir+'/templete_files/directory_structure.txt';
     var data = fs.readFileSync(ds, "utf-8").split('\n'),
         length = data.length;
 
