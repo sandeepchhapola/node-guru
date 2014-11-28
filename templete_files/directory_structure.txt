@@ -10,7 +10,6 @@ stuff
 src
 -->enums
 -->errors
-views
 server
 -->controllers
 -->services
@@ -26,3 +25,4 @@ client
 -->app
 ---->controllers
 ---->services
+views
