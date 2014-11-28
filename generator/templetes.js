@@ -1,5 +1,5 @@
 module.exports.buildApp = function() {
-        var filePath="./templete_files/content.txt";
+        var filePath="templete_files/content.txt";
         var newFile = '';
         var content=_fs.readFileSync(filePath).toString().split('\n');
         var len=content.length;
