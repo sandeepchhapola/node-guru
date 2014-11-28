@@ -1,19 +1,28 @@
 {
-  "name": "node-guru",
-  "version": "1.0.0",
-  "description": "\"MVC Architecture for nodejs\"",
-  "main": "node-guru.js",
-  "keywords": [
-    "MVC",
-    "node",
-    "npm",
-    "Architecture",
-    "MVC Architecture",
-    "Node Architecture"
-  ],
-  "author": "\"SandeepChhapola\"",
-  "license": "GPLv3",
-  "dependencies": {
-    "shelljs": "^0.3.0"
-  }
+    "name": "node-guru",
+    "version": "1.0.0",
+    "description": "\"MVC Architecture for nodejs\"",
+    "main": "node guru.js",
+    "scripts": {
+        "start": "node node-guru.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sandeepchhapola/node-guru.git"
+    },
+    "bin": {
+        "node-guru": "./node-guru.js"
+    },
+    "keywords": [
+        "MVC",
+        "node",
+        "npm",
+        "Architecture",
+        "MVC Architecture",
+        "Node Architecture"
+    ],
+    "author": "\"SandeepChhapola\"",
+    "license": "GPLv3",
+    "dependencies": {
+    }
 }

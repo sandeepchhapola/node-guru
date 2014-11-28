@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 var global=require('./generator/global');
 var directories=require('./generator/directories');
 var templetes=require('./generator/templetes');
