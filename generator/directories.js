@@ -1,7 +1,8 @@
 var fs = require('fs');
 
 module.exports.init = function () {
-    var ds = "../templete_files/directory_structure.txt",
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",process);
+    var ds = "./templete_files/directory_structure.txt",
         data = fs.readFileSync(ds, "utf-8").split('\n'),
         length = data.length;
     for (var i = 0; i < length; i++) {
