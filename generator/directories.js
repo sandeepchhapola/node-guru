@@ -1,10 +1,10 @@
 var fs = require('fs');
-
+var path=require('path');
 module.exports.init = function () {
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",process);
-    var ds = "./templete_files/directory_structure.txt",
+    var ds = path.normalize("../templete_files/directory_structure.txt"),
         data = fs.readFileSync(ds, "utf-8").split('\n'),
         length = data.length;
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",ds);
     for (var i = 0; i < length; i++) {
         var curr_indx = data[i].indexOf(">"),
             currDirName = data[i].substring(curr_indx + 1, length);
