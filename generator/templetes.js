@@ -5,7 +5,8 @@ module.exports.buildApp = function() {
         var len=content.length;
         var done=0;
         require('colors');
-        content.forEach(function (line) {
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>_appBaseUrl>>>>>>>>>>>>>>>>>>>>>",_appBaseUrl);
+    /*    content.forEach(function (line) {
             if (line.indexOf('[FILE_URL]') > -1) {
                 newFile = line.replace('[FILE_URL]', _appBaseUrl);
                 _fs.writeFileSync(newFile, '', "utf-8");
@@ -21,5 +22,5 @@ module.exports.buildApp = function() {
                 process.stdout.write("\n");
             }
         });
-
+*/
 };

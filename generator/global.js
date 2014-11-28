@@ -4,7 +4,10 @@ var fs = require('fs'),
 
 module.exports.init = function () {
     global.__defineGetter__('_appBaseUrl', function () {
-        return appBaseUrl||(appBaseUrl=process.cwd());
+        if(!appBaseUrl){
+            appBaseUrl=process.cwd();
+        }
+        return appBaseUrl;
     });
     global.__defineGetter__('_fs', function () {
         return fs;
