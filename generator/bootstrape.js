@@ -1,7 +1,7 @@
 require('colors');
-module.exports.npmInstallation=function(){
+module.exports.npmInstallation = function () {
     var spawn = require('child_process').spawn,
-        npm    = spawn('npm', ['install']);
+        npm = spawn('npm', ['install']);
 
     npm.stdout.on('data', function (data) {
         console.log(data.toString().blue);
@@ -18,9 +18,9 @@ module.exports.npmInstallation=function(){
     });
 };
 
-module.exports.bowerInstallation=function(){
+module.exports.bowerInstallation = function () {
     var spawn = require('child_process').spawn,
-        bower    = spawn('bower', ['install']);
+        bower = spawn('bower', ['install', '--allow-root ']);
 
     bower.stdout.on('data', function (data) {
         console.log(data.toString().blue);
