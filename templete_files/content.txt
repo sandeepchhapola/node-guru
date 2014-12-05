@@ -116,8 +116,7 @@ angular.module('nodeGuru')
 
 [FILE_URL]/client/partials/aboutus.html
 <div>
-    <p>Email: schhapola0001@gmail.com</p>
-    <p>Mobile: 95550abcde</p>
+    <p>gitURL: https://github.com/sandeepchhapola/node-guru</p>
 </div>
 
 [FILE_URL]/client/partials/main.html
