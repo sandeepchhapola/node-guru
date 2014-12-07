@@ -9,7 +9,7 @@ node_modules
 
 [FILE_URL]/bower.json
 {
-  "name": "nodegurudemo",
+  "name": "nodeguru",
   "version": "0.0.0",
   "dependencies": {
     "angular": "~1.3.3",
@@ -21,7 +21,7 @@ node_modules
 
 
 [FILE_URL]/client/app/app.js
-angular.module('nodeGuru', [
+angular.module('nodeguru', [
         'ngRoute'
     ])
     .config(function ($routeProvider) {
@@ -43,26 +43,21 @@ angular.module('nodeGuru', [
 
 
 [FILE_URL]/client/app/controllers/aboutController.js
-/**
- * Created by sandeepchhapola on 18/11/14.
- */
 
 
 [FILE_URL]/client/app/controllers/mainController.js
-angular.module('nodeGuru')
+angular.module('nodeguru')
     .controller("mainController",["$scope","userService",function($scope,userService){
         console.log("main controller run successfully");
         userService.getUser();
     }]);
 
+
 [FILE_URL]/client/app/controllers/welcomeController.js
-/**
- * Created by sandeepchhapola on 18/11/14.
- */
 
 
 [FILE_URL]/client/app/services/userService.js
-angular.module('nodeGuru')
+angular.module('nodeguru')
     .service("userService",function(){
         this.getUser=function(){
             console.log("user service run successfully");
@@ -75,9 +70,9 @@ angular.module('nodeGuru')
 }
 
 [FILE_URL]/client/index.html
-<html ng-app="nodeGuru">
+<html ng-app="nodeguru">
 <title>
-    node-guru-demo
+    nodeguru
 </title>
 <head>
     <script type="text/javascript" src="bower/jquery/dist/jquery.js"></script>
@@ -94,7 +89,7 @@ angular.module('nodeGuru')
     <div class="container">
         <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">nodegurudemo</a>
+                <a class="navbar-brand" href="#">nodeguru</a>
             </div>
             <div>
                 <ul class="nav navbar-nav">
@@ -179,10 +174,10 @@ module.exports.initSuperUser = function () {
 {
     "common": {
         "port": 8080,
-        "appName": "nodegurudemo",
+        "appName": "nodeguru",
         "dataSource": {
             "mongo": {
-                "url": "mongodb://localhost:27017/nodegurudemo",
+                "url": "mongodb://localhost:27017/nodeguru",
                 "poolSize": "100"
             }
         },
@@ -315,7 +310,7 @@ module.exports.initGlobals = function () {
 
 [FILE_URL]/package.json
 {
-  "name": "nodegurudemo",
+  "name": "nodeguru",
   "version": "0.0.1",
   "scripts": {
     "start": "node server/server.js"
@@ -378,51 +373,29 @@ module.exports.getUserList=function(req,res){
 };
 
 [FILE_URL]/src/enums/EventName.js
-/**
- * Created by sandeepchhapola on 14/11/14.
- */
 
 
 [FILE_URL]/src/errors/responseError.js
-/**
- * Created by sandeepchhapola on 14/11/14.
- */
 
 
 [FILE_URL]/stuff/grunt/grunt.js
-/**
- * Created by sandeepchhapola on 14/11/14.
- */
 
 
 [FILE_URL]/stuff/jobs/reportmailer.js
-/**
- * Created by sandeepchhapola on 14/11/14.
- */
 
 
 [FILE_URL]/stuff/subprocess/subprocesses.js
-/**
- * Created by sandeepchhapola on 14/11/14.
- */
 
 
 [FILE_URL]/stuff/tests/userTest.js
-/**
- * Created by sandeepchhapola on 14/11/14.
- */
-
 
 [FILE_URL]/stuff/webhooks/webhooks.js
-/**
- * Created by sandeepchhapola on 14/11/14.
- */
 
 
 [FILE_URL]/views/index.ejs
-<html ng-app="nodeGuru">
+<html ng-app="nodeguru">
 <title>
-    node-guru-demo
+    nodeguru
 </title>
 <head>
     <script type="text/javascript" src="bower/jquery/dist/jquery.js"></script>
@@ -439,7 +412,7 @@ module.exports.getUserList=function(req,res){
     <div class="container">
         <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">nodegurudemo</a>
+                <a class="navbar-brand" href="#">nodeguru</a>
             </div>
             <div>
                 <ul class="nav navbar-nav">
