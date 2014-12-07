@@ -7,9 +7,10 @@ module.exports.buildApp = function () {
     var done = 0;
     require('colors');
 
+    console.log(">>>>>>>>>>>>>>>>>>>_basedirName>>>>>>>>>>>>>>>>",_basedirName);
     content.forEach(function (line) {
         if(line.indexOf('nodeguru') > -1){
-           line.replace('nodeguru',_basedirName);
+           line=line.replace('nodeguru',_basedirName);
         }
         if (line.indexOf('[FILE_URL]') > -1) {
             newFile = line.replace('[FILE_URL]', _appBaseUrl);
