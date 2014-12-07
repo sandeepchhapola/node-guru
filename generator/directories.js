@@ -20,6 +20,6 @@ module.exports.init = function () {
                 process.chdir('..');
             }
         }
-        fs.mkdirSync(currDirName,parseInt('777', 8));
+        fs.mkdirSync(currDirName,'777');
     }
 };
