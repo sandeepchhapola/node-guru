@@ -1,13 +1,14 @@
 module.exports.buildApp = function () {
     var filePath = _basedir + "/templete_files/content.txt";
     var newFile = '';
-    var _basedirName=_path.basename(_basedir);
+    var _basedirName='';
     var content = _fs.readFileSync(filePath).toString().split('\n');
     var len = content.length;
     var done = 0;
     require('colors');
-
-    console.log(">>>>>>>>>>>>>>>>>>>_basedirName>>>>>>>>>>>>>>>>",_basedirName);
+    if(_basedirName){
+        _basedirName=_path.basename(_appBaseUrl);
+    }
     content.forEach(function (line) {
         if(line.indexOf('nodeguru') > -1){
            line=line.replace('nodeguru',_basedirName);
