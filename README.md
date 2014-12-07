@@ -21,3 +21,13 @@ steps are as follow:
   or   
 `node server/server.js`
 
+##Server-side Technology
+`1) node`  
+`2) Mongodb`   
+`3) Express`  
+
+##Client-side Technology
+`1) Angular`
+
+
+ In sort node-guru is based on MEAN (Mongodb,Express,Angular,Node) technology.
