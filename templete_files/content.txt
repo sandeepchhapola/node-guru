@@ -111,12 +111,12 @@ angular.module('nodeguru')
 
 [FILE_URL]/client/partials/aboutus.html
 <div>
-    <p>gitURL: https://github.com/sandeepchhapola/node-guru</p>
+    <p>put Content here for aboutus</p>
 </div>
 
 [FILE_URL]/client/partials/main.html
 <div>
-    <h3>Thanks for Using node-guru</h3>
+    <h3>Home page</h3>
 </div>
 
 [FILE_URL]/client/partials/welcome.html
