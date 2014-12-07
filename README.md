@@ -11,13 +11,13 @@ It is as simple to use as installation. You can modify it manually according to 
 ## How to use
 
 steps are as follow:
-`1) sudo mkdir <app's Name>`
-`2) cd <app's Name>`
-`3) sudo node-guru`
+`1) sudo mkdir <app's Name>`  
+`2) cd <app's Name>`  
+`3) sudo node-guru`  
 
 
 ## How to run application
-`npm start`
-or
+`npm start`  
+  or   
 `node server/server.js`
 
