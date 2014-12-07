@@ -10,7 +10,7 @@ It is as simple to use as installation. You can modify it manually according to 
 
 ## How to use
 
-steps are as follow:
+steps are as follow:   
 `1) sudo mkdir <app's Name>`  
 `2) cd <app's Name>`  
 `3) sudo node-guru`  
